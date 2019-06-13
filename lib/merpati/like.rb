@@ -4,19 +4,28 @@ module Merpati
   class Like
 
     extend ActiveTweet
-    attr_reader :title, :description, :urls
+    attr_reader :id, :title, :title, :description, :urls
 
-    def initialize(title:, description:, urls:)
-      @title = title
+    def initialize(id: nil, title:, description:, urls:)
+      @id          = id
+      @title       = title
+      @urls        = urls
       @description = description
-      @urls  = urls
     end
 
     def self.all
       connection.favorites.map do |tweet|
         urls = (tweet.uris + tweet.media).map(&:get_url)
-        new(title: tweet.text, description: tweet.full_text, urls: urls)
+        new(id: tweet.id, title: tweet.text, description: tweet.full_text, urls: urls)
       end
-    end    
+    end
+
+    def self.destroy(id)
+      connection.unfavorite(id)
+    end
+
+    def destroy
+      self.class.destroy(id)
+    end
   end
 end

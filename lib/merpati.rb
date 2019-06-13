@@ -1,0 +1,6 @@
+require 'http'
+require 'json'
+require 'twitter'
+require 'dotenv/load'
+require 'merpati/like'
+require 'active_support/core_ext/array'

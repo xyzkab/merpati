@@ -1,3 +1,5 @@
+require 'merpati/active_tweet/url_handling'
+
 module ActiveTweet
   def connection
     @connection ||= Twitter::REST::Client.new do |config|
@@ -11,13 +13,7 @@ module ActiveTweet
   def find(id)
     connection.status(id)
   end
-
-  def is_url_shortened?(url)
-    url =~ /https:\/\/t.co\/[0-9A-Za-z]+/ ? true : false
-  end
-
-  def expand_url(url)
-    http = HTTP.get(url)
-    http['location'] || url
-  end
 end
+
+Twitter::Entity::URI.include(ActiveTweet::UrlHandling)
+Twitter::Media::Photo.include(ActiveTweet::UrlHandling)

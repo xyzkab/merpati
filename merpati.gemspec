@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = %q{
     Merpati is a simple utility module to manage twitter data
   }
-  s.add_dependency('twitter')
+  s.add_dependency('twitter', '>= 6.2.0')
   s.add_dependency('http')
   s.add_dependency('dotenv')
   s.add_dependency('activesupport')

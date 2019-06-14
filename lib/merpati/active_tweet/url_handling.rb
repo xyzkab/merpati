@@ -13,7 +13,7 @@ module ActiveTweet
     def get_url
       if self.class == Twitter::Entity::URI
         expand_url(expanded_uri.to_s)
-      elsif self.class == Twitter::Media::Photo
+      elsif self.class == Twitter::Media::Photo || self.class == Twitter::Media::AnimatedGif
         expand_url(media_uri.to_s)
       end
     end

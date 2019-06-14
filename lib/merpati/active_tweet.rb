@@ -17,3 +17,4 @@ end
 
 Twitter::Entity::URI.include(ActiveTweet::UrlHandling)
 Twitter::Media::Photo.include(ActiveTweet::UrlHandling)
+Twitter::Media::AnimatedGif.include(ActiveTweet::UrlHandling)
